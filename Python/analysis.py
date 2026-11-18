@@ -81,7 +81,7 @@ def main():
         plt.ylabel("Points")
         plt.xticks(rotation=20)
         plt.tight_layout()
-        plt.savefig(OUTPUT_DIR / "team_points.png")
+        plt.savefig(OUTPUT_DIR / "team_points.png", dpi=150, bbox_inches="tight")
         plt.close()
 
         # 2. Wins, draws and losses
@@ -97,7 +97,7 @@ def main():
         plt.ylabel("Number of Matches")
         plt.legend()
         plt.tight_layout()
-        plt.savefig(OUTPUT_DIR / "match_performance.png")
+        plt.savefig(OUTPUT_DIR / "match_performance.png", dpi=150, bbox_inches="tight")
         plt.close()
 
         # 3. Points distribution
@@ -108,7 +108,7 @@ def main():
                     autopct="%1.1f%%", startangle=90)
             plt.title("Tournament Points Distribution")
             plt.tight_layout()
-            plt.savefig(OUTPUT_DIR / "points_distribution.png")
+            plt.savefig(OUTPUT_DIR / "points_distribution.png", dpi=150, bbox_inches="tight")
             plt.close()
 
         # 4. Goals for and against
@@ -121,7 +121,7 @@ def main():
         plt.xticks(rotation=20)
         plt.legend()
         plt.tight_layout()
-        plt.savefig(OUTPUT_DIR / "goals_comparison.png")
+        plt.savefig(OUTPUT_DIR / "goals_comparison.png", dpi=150, bbox_inches="tight")
         plt.close()
 
         # 5. Player participation
@@ -134,7 +134,7 @@ def main():
             plt.ylabel("Number of Players")
             plt.xticks(rotation=20)
             plt.tight_layout()
-            plt.savefig(OUTPUT_DIR / "player_participation.png")
+            plt.savefig(OUTPUT_DIR / "player_participation.png", dpi=150, bbox_inches="tight")
             plt.close()
 
         print("\nCharts saved in:", OUTPUT_DIR.resolve())
