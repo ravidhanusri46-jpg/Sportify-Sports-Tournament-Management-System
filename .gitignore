@@ -1,0 +1,9 @@
+*.class
+*.jar
+__pycache__/
+visualizations/
+*.pyc
+# Local database credentials
+.env
+Python/db_config.py
+Java/db.properties

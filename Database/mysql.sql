@@ -1,0 +1,5 @@
+USE sports_management;
+
+ALTER TABLE teams
+ADD COLUMN coach_name VARCHAR(80) NOT NULL DEFAULT '',
+ADD COLUMN city VARCHAR(60) NOT NULL DEFAULT '';

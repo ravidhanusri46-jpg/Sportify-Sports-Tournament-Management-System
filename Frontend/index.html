@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportify | Tournament Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <h2 class="logo">🏆 SPORTIFY</h2>
+        <p class="menu-title">MAIN MENU</p>
+
+        <button onclick="showSection('dashboard')">▦ Dashboard</button>
+        <button onclick="showSection('teams')">⚽ Teams</button>
+        <button onclick="showSection('players')">👥 Players</button>
+        <button onclick="showSection('tournaments')">🏆 Tournaments</button>
+        <button onclick="showSection('matches')">📅 Matches</button>
+        <button onclick="showSection('standings')">📊 Standings</button>
+         <button onclick="showSection('analytics')">📈 Analytics</button>
+        <div class="sidebar-bottom">
+            <p>SPORTS MANAGEMENT</p>
+            <small>Version 1.0</small>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="topbar">
+            <div>
+                <h2>Sports Management</h2>
+                <p>Manage your tournaments in one place</p>
+            </div>
+            <div class="admin">👤 Admin</div>
+        </div>
+
+        
+<section id="dashboard" class="section active">
+
+    <div class="dashboard-hero">
+        <div class="hero-content">
+            <span class="hero-tag">🏆 SPORTIFY MANAGEMENT</span>
+            <h1>Welcome Back, Admin! 👋</h1>
+            <p>Your sports management journey starts here. Manage teams, players and tournaments in one place.</p>
+
+            <button onclick="showSection('matches')">
+                Explore Matches →
+            </button>
+        </div>
+
+        <div class="hero-icon">🏅</div>
+    </div>
+
+    <div class="dashboard-title">
+        <div>
+            <h2>Dashboard Overview</h2>
+            <p>Here's what's happening in your sports system.</p>
+        </div>
+        <span class="season-badge">⚡ Season 2026</span>
+    </div>
+
+    <div class="dashboard-cards">
+
+        <div class="stat-card teams-card">
+            <div class="stat-top">
+                <span>Total Teams</span>
+                <div class="stat-icon">⚽</div>
+            </div>
+            <h2 id="dashboardTeamCount">0</h2>
+            <small>Registered teams</small>
+        </div>
+
+        <div class="stat-card players-card">
+            <div class="stat-top">
+                <span>Total Players</span>
+                <div class="stat-icon">👥</div>
+            </div>
+           <h2 id="dashboardPlayerCount">0</h2>
+            <small>Registered players</small>
+        </div>
+
+        <div class="stat-card tournaments-card">
+            <div class="stat-top">
+                <span>Tournaments</span>
+                <div class="stat-icon">🏆</div>
+            </div>
+            <h2 id="dashboardTournamentCount">0</h2>
+            <small>Available tournaments</small>
+        </div>
+
+        <div class="stat-card matches-card">
+            <div class="stat-top">
+                <span>Total Matches</span>
+                <div class="stat-icon">📅</div>
+            </div>
+            <h2 id="dashboardMatchCount">0</h2>
+            <small>Scheduled and completed</small>
+        </div>
+
+    </div>
+
+    <div class="dashboard-bottom">
+
+        <div class="dashboard-panel tournament-highlight">
+            <div class="panel-heading">
+                <h3>🏆 Featured Tournament</h3>
+                <span class="live-badge">UPCOMING</span>
+            </div>
+
+            <div class="tournament-banner">
+                <span>⚽</span>
+                <div>
+                    <h2>College Football Cup</h2>
+                    <p>Inter-Department Sports Championship</p>
+                </div>
+            </div>
+
+            <div class="tournament-info">
+                <div>
+                    <small>SPORT</small>
+                    <strong>Football</strong>
+                </div>
+                <div>
+                    <small>START DATE</small>
+                    <strong>15 Nov 2026</strong>
+                </div>
+                <div>
+                    <small>END DATE</small>
+                    <strong>25 Nov 2026</strong>
+                </div>
+            </div>
+
+            <button class="outline-btn"
+                onclick="showSection('tournaments')">
+                View Tournament →
+            </button>
+        </div>
+
+        <div class="dashboard-panel quick-panel">
+            <h3>⚡ Quick Actions</h3>
+            <p>Manage your sports activities easily.</p>
+
+            <button onclick="showSection('teams')">
+                <span>⚽</span>
+                <span>Manage Teams</span>
+                <span>→</span>
+            </button>
+
+            <button onclick="showSection('players')">
+                <span>👥</span>
+                <span>Manage Players</span>
+                <span>→</span>
+            </button>
+
+            <button onclick="showSection('tournaments')">
+                <span>🏆</span>
+                <span>View Tournaments</span>
+                <span>→</span>
+            </button>
+
+            <button onclick="showSection('matches')">
+                <span>📅</span>
+                <span>Schedule Matches</span>
+                <span>→</span>
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        
+<section id="teams" class="section">
+    <h1>⚽ Team Management</h1>
+    <p>Add and manage tournament teams.</p>
+
+    <div class="panel">
+        <h3>➕ Register New Team</h3>
+
+        <form id="teamForm" onsubmit="addTeam(event)">
+            <div class="form-grid">
+                <div>
+                    <label>Team Name</label>
+                    <input type="text" id="teamName"
+                           placeholder="Enter team name" required>
+                </div>
+
+                <div>
+                    <label>Sport</label>
+                    <select id="teamSport" required>
+                        <option value="">Select Sport</option>
+                        <option>Football</option>
+                        <option>Cricket</option>
+                        <option>Basketball</option>
+                        <option>Volleyball</option>
+                        <option>Badminton</option>
+                    </select>
+                </div>
+
+                <div>
+    <label>Department</label>
+    <input type="text" id="teamDepartment"
+           placeholder="Enter department" required>
+</div>
+
+                <div>
+                    <label>Coach Name</label>
+                    <input type="text" id="coachName"
+                           placeholder="Enter coach name" required>
+                </div>
+
+                <div>
+                    <label>City</label>
+                    <input type="text" id="teamCity"
+                           placeholder="Enter city" required>
+                </div>
+            </div>
+
+            <button type="submit" class="primary-btn">Register Team</button>
+        </form>
+    </div>
+
+    
+</section>
+
+    <div class="panel">
+        <h3>📋 Registered Teams</h3>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team Name</th>
+                        <th>Department</th>
+                        <th>Sport</th>
+                        <th>Coach</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody id="teamTable">
+                    <tr>
+                        <td colspan="4">No teams loaded yet</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+<section id="players" class="section">
+    <h1>👥 Player Management</h1>
+    <p>Register players and assign them to teams.</p>
+
+    <div class="panel">
+        <h3>➕ Register New Player</h3>
+
+        <form id="playerForm" onsubmit="addPlayer(event)">
+            <div class="form-grid">
+
+                <div>
+                    <label>Player Name</label>
+                    <input type="text" id="playerName"
+                           placeholder="Enter player name" required>
+                </div>
+
+                <div>
+                    <label>Select Team</label>
+                    <select id="playerTeam" required>
+    <option value="">Select Team</option>
+</select>
+                </div>
+
+                <div>
+                    <label>Participation</label>
+                    <select id="participation" required>
+                        <option value="">Select Participation</option>
+                        <option value="Player">Player</option>
+                        <option value="Captain">Captain</option>
+                        <option value="Substitute">Substitute</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button type="submit" class="primary-btn">
+                Register Player
+            </button>
+        </form>
+    </div>
+
+    <div class="panel">
+        <h3>📋 Registered Players</h3>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player ID</th>
+                        <th>Player Name</th>
+                        <th>Team</th>
+                        <th>Participation</th>
+                    </tr>
+                </thead>
+                <tbody id="playerTable">
+                    <tr>
+                        <td colspan="4">No players loaded yet</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+        
+
+        
+<section id="tournaments" class="section">
+    <h1>🏆 Tournament Management</h1>
+    <p>Create and manage sports tournaments.</p>
+
+    <div class="panel">
+        <h3>➕ Create New Tournament</h3>
+
+        <form id="tournamentForm" onsubmit="addTournament(event)">
+            <div class="form-grid">
+
+                <div>
+                    <label>Tournament Name</label>
+                    <input type="text" id="tournamentName"
+                        placeholder="Enter tournament name" required>
+                </div>
+
+                <div>
+                    <label>Sport</label>
+                    <select id="tournamentSport" required>
+                        <option value="">Select Sport</option>
+                        <option value="Football">Football</option>
+                        <option value="Cricket">Cricket</option>
+                        <option value="Volleyball">Volleyball</option>
+                        <option value="Basketball">Basketball</option>
+                        <option value="Badminton">Badminton</option>
+                        <option value="Kabaddi">Kabaddi</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Start Date</label>
+                    <input type="date" id="startDate" required>
+                </div>
+
+                <div>
+                    <label>End Date</label>
+                    <input type="date" id="endDate" required>
+                </div>
+
+            </div>
+
+            <button type="submit" class="primary-btn">
+                Create Tournament
+            </button>
+        </form>
+    </div>
+
+    <div class="panel">
+        <h3>📋 Tournament List</h3>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tournament Name</th>
+                        <th>Sport</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tournamentTable">
+                    <tr>
+                        <td colspan="5">No tournaments loaded yet</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+        
+<section id="matches" class="section">
+
+    <h1>📅 Match Management</h1>
+    <p>Schedule matches and manage match results.</p>
+
+    <div class="panel match-panel">
+
+        <h3>➕ Schedule New Match</h3>
+
+        <form id="matchForm" onsubmit="addMatch(event)">
+
+            <div class="match-form-grid">
+
+                <div>
+                    <label>Tournament</label>
+                    <select id="matchTournament" required>
+                        <option value="">Select Tournament</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Team 1</label>
+                    <select id="matchTeam1" required>
+                        <option value="">Select Team 1</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Team 2</label>
+                    <select id="matchTeam2" required>
+                        <option value="">Select Team 2</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Match Date</label>
+                    <input type="date" id="matchDate" required>
+                </div>
+
+            </div>
+
+            <button type="submit" class="primary-btn">
+                Schedule Match
+            </button>
+
+        </form>
+    </div>
+
+<div class="panel match-panel">
+
+    <h3>🏆 Update Match Result</h3>
+
+    <form id="scoreForm" onsubmit="updateMatchScore(event)">
+
+        <div class="match-form-grid">
+
+            <div>
+                <label>Select Match</label>
+                <select id="scoreMatch" required>
+                    <option value="">Select Match</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Team 1 Score</label>
+                <input type="number" id="score1" min="0" required>
+            </div>
+
+            <div>
+                <label>Team 2 Score</label>
+                <input type="number" id="score2" min="0" required>
+            </div>
+
+        </div>
+
+        <button type="submit" class="primary-btn">
+            Update Result
+        </button>
+
+    </form>
+
+</div>
+
+    <div class="panel match-panel">
+
+        <h3>📋 Match List</h3>
+
+        <div class="table-container">
+            <table class="match-table">
+
+                <thead>
+                    <tr>
+                        <th>Match ID</th>
+                        <th>Tournament</th>
+                        <th>Team 1</th>
+                        <th>Team 2</th>
+                        <th>Date</th>
+                        <th>Score</th>
+                        <th>Winner</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="matchTable"></tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</section>
+
+
+        
+<section id="standings" class="section">
+
+    <h1>🏆 Tournament Standings</h1>
+    <p>View team rankings and performance.</p>
+
+    <div class="panel match-panel">
+
+        <h3>📊 Select Tournament</h3>
+
+        <select id="standingsTournament" onchange="loadStandings()"></select>
+            <option value="">Select Tournament</option>
+        </select>
+
+    </div>
+
+    <div class="panel match-panel">
+
+        <h3>🥇 Team Rankings</h3>
+
+        <div class="table-container">
+
+            <table class="match-table">
+
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team Name</th>
+                        <th>Played</th>
+                        <th>Won</th>
+                        <th>Draw</th>
+                        <th>Lost</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+
+                <tbody id="standingsTable">
+                    <tr>
+                        <td colspan="7">Select a tournament to view standings.</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="analytics" class="section">
+
+    <h1>📈 Sports Analytics Dashboard</h1>
+    <p>Analyze team performance through charts and statistics.</p>
+    <button onclick="refreshAnalytics()">
+    🔄 Refresh Analytics
+</button>
+
+    <div class="panel match-panel">
+        <h3>🏆 Team Points Analysis</h3>
+        <img src="visualizations/team_points.png" alt="Team Points Chart" width="100%">
+    </div>
+
+    <div class="panel match-panel">
+        <h3>⚽ Match Performance</h3>
+        <img src="visualizations/match_performance.png" alt="Match Performance Chart" width="100%">
+    </div>
+
+    <div class="panel match-panel">
+        <h3>📊 Points Distribution</h3>
+        <img src="visualizations/points_distribution.png" alt="Points Distribution Chart" width="100%">
+    </div>
+
+    <div class="panel match-panel">
+        <h3>🥅 Goals Comparison</h3>
+        <img src="visualizations/goals_comparison.png" alt="Goals Comparison Chart" width="100%">
+    </div>
+
+    <div class="panel match-panel">
+        <h3>👥 Player Participation</h3>
+        <img src="visualizations/player_participation.png" alt="Player Participation Chart" width="100%">
+    </div>
+
+</section>
+<!-- ANALYTICS SECTION -->
+<section id="analytics" class="section">
+
+    <h1>Data Science Analytics 📊</h1>
+    <p>Sports performance analysis using Python, Pandas and Matplotlib.</p>
+
+    <div class="analytics-grid">
+
+        <div class="chart-card">
+            <h3>Team Points</h3>
+            <img src="../Python/visualizations/team_points.png" alt="Team Points Chart">
+        </div>
+
+        <div class="chart-card">
+            <h3>Match Performance</h3>
+            <img src="../Python/visualizations/match_performance.png" alt="Match Performance Chart">
+        </div>
+
+        <div class="chart-card">
+            <h3>Points Distribution</h3>
+            <img src="../Python/visualizations/points_distribution.png" alt="Points Distribution Chart">
+        </div>
+
+        <div class="chart-card">
+            <h3>Goals Comparison</h3>
+            <img src="../Python/visualizations/goals_comparison.png" alt="Goals Comparison Chart">
+        </div>
+
+        <div class="chart-card">
+            <h3>Player Participation</h3>
+            <img src="../Python/visualizations/player_participation.png" alt="Player Participation Chart">
+        </div>
+
+    </div>
+
+</section>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
